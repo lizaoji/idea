@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def create
   	@post = Post.new(post_params)
+    @post.status = 'f'
   	if @post.save
       redirect_to :root
     else
@@ -30,6 +31,20 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    redirect_to root_path
+  end
+  
+  def done
+    @post = Post.find(params[:id])
+    @post.status = 't'
+    @post.save
+    redirect_to root_path
+  end
+
+  def undone
+    @post = Post.find(params[:id])
+    @post.status='f'
+    @post.save
     redirect_to root_path
   end
 

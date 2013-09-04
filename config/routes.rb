@@ -2,6 +2,8 @@ Idea::Application.routes.draw do
   root 'home#index'
   get "home/index"
   resources :posts
+  get 'posts/:id/done' => 'posts#done'
+  get 'posts/:id/undone' => 'posts#undone'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

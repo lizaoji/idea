@@ -10,19 +10,20 @@
     </ul>
   </div>
   <% end %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
- 
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
+  <legend>
+    <% if @post.id %>
+      <%= "Edit" %>
+      <% else %>
+      <%= "Add new" %>
+    <% end %> 
+    schedule
+  </legend>
+    <%= f.label "New Task" %>
+    <%= f.text_field :title , placeholder:"Type new task" %>
+    <br>
+    <%= f.label "Detail" %>
+    <%= f.text_area :text , rows:"5", placeholder:"I will do..."%>
+    <br>
+    <%= f.submit class: "btn"%> | <%= link_to 'back', root_path %>
 <% end %>
  
-<%= link_to '再次送我回火星', root_path %>
