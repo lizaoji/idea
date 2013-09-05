@@ -21,6 +21,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.title = params[:post][:title]
     @post.text = params[:post][:text]
+    @post.task_type = params[:post][:task_type]
     if @post.save
       redirect_to :root
     else
@@ -50,6 +51,6 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :text)
+      params.require(:post).permit(:title, :text, :task_type)
     end
 end

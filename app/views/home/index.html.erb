@@ -1,20 +1,28 @@
 <div class="container">
-  <%= link_to '+ Add new schedule', new_post_path, class:"btn btn-primary"%>
+  <%= link_to '+ 添加新任务', new_post_path, class:"btn btn-primary"%>
 </div>
 
 <div class="container">
 	<table class="table">
-    <caption><p class="lead">All Tasks</p></caption>
+    <caption><p class="lead">所有任务</p></caption>
 		<tr>
-			<th class="span1"><strong>#</strong></th>
-			<th class="span2"><strong>任务</strong></th>
-			<th class="span6"><strong>明细</strong></th>
+			<th class="span1"><strong>类型#</strong></th>
+			<th class="span2"><strong>名称</strong></th>
+			<th class="span7"><strong>详细内容</strong></th>
 			<th class="span2"><strong>操作</strong></th>
 		</tr>
-		<% temp = 1 %>
 		<% @post.each do |post| %>
 		<tr>
-			<td class="text-center"><%= temp %></td>
+			<td><% if post.task_type == "task" %>
+    			  <%= link_to "#", class:"badge badge-important" do %>
+        		  <span><%= "计划##{@task_num -= 1}" %></span>
+            <% end %>
+          <% elsif post.task_type == "request" %>
+            <%= link_to "#", class:"badge badge-info" do %>
+              <span><%= "需求##{@request_num -= 1}" %></span>
+            <% end %>
+          <% end %>
+      </td>
 			<td><%= post.title %></td>
 			<td><%= post.text %>
 				<% if post.status.to_s == 't' %>
@@ -36,7 +44,6 @@
 				<%= link_to "编辑", edit_post_path(post.id) %> | 
 				<%= link_to "删除", post_path(post), method: :delete %></td>
 		</tr>
-		<% temp += 1 %>
 		<% end %>
 	</table>
 </div>

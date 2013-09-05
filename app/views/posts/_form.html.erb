@@ -12,18 +12,19 @@
   <% end %>
   <legend>
     <% if @post.id %>
-      <%= "Edit" %>
+      <%= "编辑" %>
       <% else %>
-      <%= "Add new" %>
-    <% end %> 
-    schedule
+      <%= "添加" %>
+    <% end %>任务
   </legend>
-    <%= f.label "New Task" %>
-    <%= f.text_field :title , placeholder:"Type new task" %>
+    <%= f.label "任务名" %>
+    <%= f.text_field :title , placeholder:"输入任务名称" %>
     <br>
-    <%= f.label "Detail" %>
-    <%= f.text_area :text , rows:"5", placeholder:"I will do..."%>
+    <%= f.label "详细描述" %>
+    <%= f.text_area :text , rows:"5", placeholder:"要做什么呢"%>
     <br>
-    <%= f.submit class: "btn"%> | <%= link_to 'back', root_path %>
+    <%= f.select :task_type, [["新计划","task"],["新需求","request"]] %>
+    <br><br>
+    <%= f.submit "提交任务", class: "btn"%> | <%= link_to '返回', root_path %>
 <% end %>
  

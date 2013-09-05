@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130904013209) do
+ActiveRecord::Schema.define(version: 20130905062201) do
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20130904013209) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.string   "task_type"
   end
 
 end
