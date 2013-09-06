@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-  	@post = Post.order("created_at DESC")
+  	@post = Post.order("created_at DESC").paginate(:per_page => 2, :page => params[:page])
     @task_num = @post.inject(0) { |sum, i| sum + (i.task_type == "task" ? 1 : 0) } + 1
     @request_num = @post.inject(0) { |sum, i| sum + (i.task_type == "request" ? 1 : 0) } + 1
   end
