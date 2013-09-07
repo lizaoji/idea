@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   	@post = Post.new(post_params)
     @post.status = 'f'
   	if @post.save
+  		flash[:success] = "已成功添加新任务."
       redirect_to :root
     else
       render :new
