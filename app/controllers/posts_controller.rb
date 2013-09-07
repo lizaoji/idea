@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   		flash[:success] = "已成功添加新任务."
       redirect_to :root
     else
+    	flash[:error] = "哦No，添加新任务失败了."
       render :new
     end
   end
@@ -24,8 +25,10 @@ class PostsController < ApplicationController
     @post.text = params[:post][:text]
     @post.task_type = params[:post][:task_type]
     if @post.save
+    	flash[:info] = "已更新任务."
       redirect_to :root
     else
+    	flash[:error] = "哦No，更新任务失败了."
       render :edit
     end
   end
@@ -33,6 +36,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    flash[:info] = "已删除任务."
     redirect_to root_path
   end
   
@@ -40,6 +44,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.status = 't'
     @post.save
+    flash[:info] = "已更新#{@post.task_type == "task" ? "计划:" : "任务:"}#{@post.title}状态至→完成."
     redirect_to root_path
   end
 
@@ -47,6 +52,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.status='f'
     @post.save
+    flash[:info] = "已更新#{@post.task_type == "task" ? "计划:" : "任务:"}#{@post.title}状态至→未完成."
     redirect_to root_path
   end
 
