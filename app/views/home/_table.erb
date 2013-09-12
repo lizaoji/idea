@@ -14,8 +14,6 @@
 		<th class="span2"><strong>操作</strong></th>
 	</tr>
 	<% @post.each do |post| %>
-		<% if session[:see_all_flag] == 1 ||
-			(session[:see_all_flag] == 0 && post.status == 'f') %>
 		<tr>
 			<td><% if post.task_type == "task" %>
 					  <%= link_to "#", class:"badge badge-important" do %>
@@ -48,6 +46,5 @@
 				<%= link_to "编辑", edit_post_path(post.id) %> | 
 				<%= link_to "删除", post_path(post), method: :delete %></td>
 		</tr>
-		<% end %>
 	<% end %>
 </table>
