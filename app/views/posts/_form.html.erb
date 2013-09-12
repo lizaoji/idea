@@ -12,10 +12,10 @@
   <% end %>
   <legend>
     <% if @post.id %>
-      <%= "编辑" %>
+      <%= "编辑任务" %>
       <% else %>
-      <%= "添加" %>
-    <% end %>任务
+      <%= "添加任务" %>
+    <% end %>
   </legend>
     <%= f.label "任务名" %>
     <%= f.text_field :title , placeholder:"输入任务名称" %>

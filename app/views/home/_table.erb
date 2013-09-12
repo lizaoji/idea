@@ -1,0 +1,53 @@
+<table class="table">
+	<caption><p class="lead">所有任务</p></caption>
+	<tr>
+		<th class="span1"><strong>类型#</strong></th>
+		<th class="span2"><strong>名称</strong></th>
+		<th class="span7"><strong>详细内容 |</strong>
+			<% if session[:see_all_flag] == 1 %>
+				<small><em><%= link_to " 未完成", see_undone_path %></em></small>
+			<% elsif session[:see_all_flag] == 0 %>
+				<small><em><%= link_to " 全部", see_all_path %></em></small>
+			<% end %>
+
+		</th>
+		<th class="span2"><strong>操作</strong></th>
+	</tr>
+	<% @post.each do |post| %>
+		<% if session[:see_all_flag] == 1 ||
+			(session[:see_all_flag] == 0 && post.status == 'f') %>
+		<tr>
+			<td><% if post.task_type == "task" %>
+					  <%= link_to "#", class:"badge badge-important" do %>
+		    		  <span><%= "计划##{@task_num -= 1}" %></span>
+		        <% end %>
+		      <% elsif post.task_type == "request" %>
+		        <%= link_to "#", class:"badge badge-info" do %>
+		          <span><%= "需求##{@request_num -= 1}" %></span>
+		        <% end %>
+		      <% end %>
+		  </td>
+			<td><%= post.title %></td>
+			<td><%= post.text %>
+				<% if post.status.to_s == 't' %>
+					<%= link_to '#', class:"label label-success" do %>
+						<span>Done</span>
+					<% end %>
+				<% else %>
+					<%= link_to '#', class:"label label-unsuccess" do %>
+						<span>Undone</span>
+					<% end %>
+				<% end %>
+			</td>
+			<td>
+				<% if post.status == 'f' %>
+					<%= link_to "完成", 'posts/'+post.id.to_s+'/done' %>
+				<% else %>
+					<%= link_to "进行",'posts/'+post.id.to_s+'/undone' %>
+				<% end %> | 
+				<%= link_to "编辑", edit_post_path(post.id) %> | 
+				<%= link_to "删除", post_path(post), method: :delete %></td>
+		</tr>
+		<% end %>
+	<% end %>
+</table>

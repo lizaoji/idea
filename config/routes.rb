@@ -5,7 +5,8 @@ Idea::Application.routes.draw do
   get 'posts/:id/done' => 'posts#done'
   get 'posts/:id/undone' => 'posts#undone'
   get '/about' => 'home#about'
-
+	get '/see_undone' => 'home#see_undone'
+	get '/see_all' => 'home#see_all'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

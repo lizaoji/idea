@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -12,6 +12,18 @@ end
 group :production do
 	gem 'pg'
 end
+
+group :test, :development do
+    gem 'rspec-rails'
+end
+
+group :test do
+    gem 'cucumber-rails','1.0.6'
+    gem 'capybara'
+    gem 'database_cleaner'
+    gem 'factory_girl'
+end
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
