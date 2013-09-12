@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   	@post = Post.order("created_at DESC").paginate(:per_page => 20, :page => params[:page])
     @task_num = @post.inject(0) { |sum, i| sum + (i.task_type == "task" ? 1 : 0) } + 1
     @request_num = @post.inject(0) { |sum, i| sum + (i.task_type == "request" ? 1 : 0) } + 1
+  	session[:see_all_flag] ||= 1
   end
 
   def about
